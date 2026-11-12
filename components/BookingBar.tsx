@@ -14,7 +14,6 @@ export default function BookingBar({ locale }: { locale: Locale }) {
   const [depart, setDepart] = useState('');
   const [adults, setAdults] = useState(2);
   const [kids, setKids] = useState(0);
-  const [room, setRoom] = useState('');
   const [open, setOpen] = useState(false);
   const [error, setError] = useState('');
 
@@ -35,7 +34,6 @@ export default function BookingBar({ locale }: { locale: Locale }) {
     if (arrive) q.set('arrivo', arrive);
     if (depart) q.set('partenza', depart);
     q.set('ospiti', guestsLabel);
-    if (room) q.set('camera', room);
     router.push(`${path.contact(locale)}?${q.toString()}`);
   }
 
@@ -78,14 +76,6 @@ export default function BookingBar({ locale }: { locale: Locale }) {
             </div>
           )}
         </div>
-        <label className="bf">
-          <span className="l"><Icon name="bed" />{b.room}</span>
-          <select className="v in sel" value={room} onChange={(e) => setRoom(e.target.value)}>
-            <option value="">{b.allRooms}</option>
-            <option value="Camera Raffaello">Camera Raffaello</option>
-            <option value="Camera Bacio">Camera Bacio</option>
-          </select>
-        </label>
         <button className="btn btn-primary" type="submit"><span className="dot" />{t.checkAvailability}</button>
       </form>
       {error && <p className="barerr" role="alert">{error}</p>}

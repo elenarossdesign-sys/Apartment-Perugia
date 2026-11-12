@@ -23,7 +23,7 @@ export default function Footer({ locale }: { locale: Locale }) {
           <div className="col">
             <h4>{f.explore}</h4>
             <Link href={home}>{t.nav.home}</Link>
-            <Link href={`${home}#camere`}>{f.rooms}</Link>
+            <Link href={path.apartment(locale)}>{f.rooms}</Link>
             <Link href={path.blog(locale)}>{t.nav.perugia}</Link>
             <Link href={path.contact(locale)}>{t.nav.contact}</Link>
           </div>

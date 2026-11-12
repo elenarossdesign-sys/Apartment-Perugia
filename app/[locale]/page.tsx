@@ -5,14 +5,14 @@ import BookingBar from '@/components/BookingBar';
 import PostCard from '@/components/PostCard';
 import Icon, { Stars } from '@/components/Icon';
 import { getUI, path, type Locale } from '@/lib/i18n';
-import { distances, posts, reviews, rooms } from '@/lib/content';
+import { apartment as A, distances, posts, reviews } from '@/lib/content';
 import { site, waLink } from '@/lib/site';
 
 const C = {
   it: {
-    pill: 'Due camere nel centro storico',
+    pill: 'Un appartamento per 4 nel centro storico',
     h1: 'Perugia comincia appena esci dalla porta.',
-    sub: 'Camere curate a pochi passi da Corso Vannucci. Prenota direttamente con noi, senza intermediari.',
+    sub: 'Un appartamento con due camere a pochi passi da Corso Vannucci. Prenota direttamente con noi, senza intermediari.',
     rated: (b: string, a: string) => `Valutato ${b}/10 su Booking.com e ${a}/5 su Airbnb`,
     assure: ['Prenotazione diretta, senza commissioni', 'Risposta entro '],
     perks: [
@@ -21,25 +21,25 @@ const C = {
       ['whatsapp', 'Sempre raggiungibili', 'Assistenza via WhatsApp durante il soggiorno.'],
       ['sparkle', 'Curate nei dettagli', 'Biancheria di qualità, Wi-Fi e set cortesia.'],
     ],
-    roomsEyebrow: 'Le camere', roomsH: 'Due camere, due atmosfere.', roomsLead: 'Una luminosa con vasca idromassaggio, una nel blu della notte perugina. Scegli quella che ti somiglia.',
+    roomsEyebrow: 'L’appartamento', roomsH: 'Un appartamento, due atmosfere.', roomsLead: 'Due camere da letto in un unico appartamento tutto per te: una luminosa con vasca idromassaggio, una nel blu della notte perugina.', bedsK: 'Composto da', see: 'Scopri l’appartamento',
     locEyebrow: 'La posizione', locH: 'Esci di casa e sei già in centro.', locLead: 'Vicoli, piazze, sapori e musica: la Perugia da vivere a piedi, senza pensare all’auto.',
     mosaic: ['I vicoli', 'Umbria Jazz', 'La tavola umbra', 'Eurochocolate'],
     revEyebrow: 'Dicono di noi', revText: (n: number) => `Media di ${n} recensioni su Booking.com. Leggi cosa raccontano gli ospiti.`,
     howEyebrow: 'Come funziona', howH: 'Richiedi in un minuto.', howLead: 'Nessun intermediario: prenoti con noi e ricevi tutto quello che ti serve per arrivare.',
     steps: [
-      ['Scegli date e camera', 'Indica date, ospiti e la camera che preferisci: bastano pochi secondi.'],
+      ['Scegli le date', 'Indica date e numero di ospiti: bastano pochi secondi.'],
       ['Ricevi la nostra risposta', 'Controlliamo la disponibilità e ti rispondiamo via email entro '],
       ['Arriva e rilassati', 'Prima del soggiorno ti mandiamo le istruzioni per il check-in.'],
     ],
-    platEyebrow: 'Prenota dove preferisci', platH: 'Ci trovi anche su Booking.com e Airbnb.', platLead: 'Stesse camere, stessa accoglienza. Scegli la piattaforma che usi già e leggi lì tutte le recensioni degli ospiti.',
+    platEyebrow: 'Prenota dove preferisci', platH: 'Ci trovi anche su Booking.com e Airbnb.', platLead: 'Stesso appartamento, stessa accoglienza. Scegli la piattaforma che usi già e leggi lì tutte le recensioni degli ospiti.',
     direct: 'Prenota direttamente', directNote: ['Contatto diretto con l’host,', 'senza intermediari.'], reviews: 'recensioni', listing: 'Vedi l’annuncio',
     newsEyebrow: 'Dal blog', newsH: 'Vivere Perugia, prima di arrivare.',
-    finalEyebrow: 'Il tuo soggiorno', finalH: 'La tua camera a Perugia ti aspetta.', finalP: 'Scegli le date e verifica la disponibilità: ti rispondiamo entro ', waQ: 'Domande? Scrivici su WhatsApp',
+    finalEyebrow: 'Il tuo soggiorno', finalH: 'Il tuo appartamento a Perugia ti aspetta.', finalP: 'Scegli le date e verifica la disponibilità: ti rispondiamo entro ', waQ: 'Domande? Scrivici su WhatsApp',
   },
   en: {
-    pill: 'Two rooms in the historic centre',
+    pill: 'An apartment for 4 in the historic centre',
     h1: 'Perugia starts right outside your door.',
-    sub: 'Thoughtfully designed rooms a few steps from Corso Vannucci. Book directly with us, no middlemen.',
+    sub: 'A two-bedroom apartment a few steps from Corso Vannucci. Book directly with us, no middlemen.',
     rated: (b: string, a: string) => `Rated ${b}/10 on Booking.com and ${a}/5 on Airbnb`,
     assure: ['Direct booking, no commission', 'Reply within '],
     perks: [
@@ -48,20 +48,20 @@ const C = {
       ['whatsapp', 'Always reachable', 'WhatsApp support during your stay.'],
       ['sparkle', 'Cared for in every detail', 'Quality linen, Wi-Fi and toiletries.'],
     ],
-    roomsEyebrow: 'The rooms', roomsH: 'Two rooms, two moods.', roomsLead: 'One bright, with a whirlpool tub; one in the deep blue of Perugia’s night. Pick the one that feels like you.',
+    roomsEyebrow: 'The apartment', roomsH: 'One apartment, two moods.', roomsLead: 'Two bedrooms in one apartment all to yourself: one bright, with a whirlpool tub; one in the deep blue of Perugia’s night.', bedsK: 'Made up of', see: 'Discover the apartment',
     locEyebrow: 'The location', locH: 'Step outside and you’re in the centre.', locLead: 'Lanes, squares, food and music: a Perugia to enjoy on foot, without thinking about the car.',
     mosaic: ['The lanes', 'Umbria Jazz', 'Umbrian food', 'Eurochocolate'],
     revEyebrow: 'What guests say', revText: (n: number) => `Average of ${n} reviews on Booking.com. Read what our guests say.`,
     howEyebrow: 'How it works', howH: 'Ask in a minute.', howLead: 'No middlemen: book with us and get everything you need to arrive.',
     steps: [
-      ['Choose dates and room', 'Tell us your dates, guests and preferred room: it takes seconds.'],
+      ['Choose your dates', 'Tell us your dates and number of guests: it takes seconds.'],
       ['Get our reply', 'We check availability and reply by email within '],
       ['Arrive and relax', 'Before your stay we send you the check-in instructions.'],
     ],
-    platEyebrow: 'Book where you prefer', platH: 'You’ll also find us on Booking.com and Airbnb.', platLead: 'Same rooms, same welcome. Choose the platform you already use and read all guest reviews there.',
+    platEyebrow: 'Book where you prefer', platH: 'You’ll also find us on Booking.com and Airbnb.', platLead: 'Same apartment, same welcome. Choose the platform you already use and read all guest reviews there.',
     direct: 'Book direct', directNote: ['Talk directly to the host,', 'no middlemen.'], reviews: 'reviews', listing: 'See the listing',
     newsEyebrow: 'From the blog', newsH: 'Live Perugia before you arrive.',
-    finalEyebrow: 'Your stay', finalH: 'Your room in Perugia is waiting.', finalP: 'Choose your dates and check availability: we reply within ', waQ: 'Questions? Message us on WhatsApp',
+    finalEyebrow: 'Your stay', finalH: 'Your apartment in Perugia is waiting.', finalP: 'Choose your dates and check availability: we reply within ', waQ: 'Questions? Message us on WhatsApp',
   },
 };
 
@@ -111,30 +111,32 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
             <div className="t"><span className="eyebrow">{c.roomsEyebrow}</span><h2 className="h2">{c.roomsH}</h2></div>
             <p className="lead">{c.roomsLead}</p>
           </div>
-          <div className="rooms">
-            {rooms.map((room) => (
-              <article className="room" key={room.slug}>
-                <Link className="media" href={path.room(locale, room.slug)} style={{ display: 'block' }}>
-                  <img src={room.card} alt={room.name} loading="lazy" />
-                  <span className="price-chip">{t.from} <b>{room.price} €</b> {t.perNight}</span>
-                  <span className="feat-chip"><Icon name={room.feature.icon} />{room.feature.label[locale]}</span>
-                </Link>
-                <div className="info">
-                  <div className="name"><h3>{room.name}</h3><span className="num">{room.num}</span></div>
-                  <p className="desc">{room.short[locale]}</p>
-                  <div className="specs">{room.specs.map((s) => <span className="spec" key={s.icon + s.label.it}><Icon name={s.icon} />{s.label[locale]}</span>)}</div>
-                  <div className="act">
-                    <span className="p">{t.from} <b>{room.price} €</b> {t.perNight}</span>
-                    <span className="b">
-                      <Link className="btn btn-ghost" href={path.room(locale, room.slug)}>{t.details}</Link>
-                      <Link className="btn btn-primary" href={`${contact}?camera=${encodeURIComponent(room.name)}`}><span className="dot" />{t.book}</Link>
-                    </span>
-                  </div>
-                </div>
-              </article>
-            ))}
+          <div className="apt">
+            <div className="apt-photos">
+              <Link href={path.apartment(locale)}>
+                <img src="/img/raffaello-card.webp" alt="Camera Raffaello" loading="lazy" />
+                <span className="price-chip">{t.from} <b>{A.price} €</b> {t.perNight}</span>
+                <span className="lbl">Camera Raffaello</span>
+              </Link>
+              <Link href={path.apartment(locale)}><img src="/img/bacio-card.webp" alt="Camera Bacio" loading="lazy" /><span className="lbl">Camera Bacio</span></Link>
+              <Link href={path.apartment(locale)}><img src="/img/raffaello-3.webp" alt="" loading="lazy" /></Link>
+            </div>
+            <div className="apt-info">
+              <h3>{A.name}</h3>
+              <p className="desc">{A.short[locale]}</p>
+              <div className="specs">{A.specs.map((s) => <span className="spec" key={s.label.it}><Icon name={s.icon} />{s.label[locale]}</span>)}</div>
+              <div className="apt-beds">
+                {A.bedrooms.map((b) => <div key={b.name}><Icon name={b.name.includes('Raffaello') ? 'bath' : 'moon'} /><p><b>{b.name}</b><span>{b.text[locale]}</span></p></div>)}
+              </div>
+              <div className="act">
+                <span className="p">{t.from} <b>{A.price} €</b> {t.perNight}</span>
+                <span className="b">
+                  <Link className="btn btn-ghost" href={path.apartment(locale)}>{t.details}</Link>
+                  <Link className="btn btn-primary" href={contact}><span className="dot" />{t.book}</Link>
+                </span>
+              </div>
+            </div>
           </div>
-          <p className="swipe"><Icon name="arrow" />{t.swipeRooms}</p>
         </section>
 
         <section className="loc" id="posizione">
@@ -231,7 +233,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
       </div>
 
       <div className="sticky">
-        <span className="p">{t.startingFrom}<b>{rooms[1].price} € {t.perNight}</b></span>
+        <span className="p">{t.startingFrom}<b>{A.price} € {t.perNight}</b></span>
         <Link className="btn btn-primary" href={contact}><span className="dot" />{t.requestAvailability}</Link>
       </div>
     </div>

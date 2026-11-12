@@ -19,12 +19,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     metadataBase: new URL(site.url),
     title: {
-      default: it ? 'Apartment Perugia · Camere nel centro storico di Perugia' : 'Apartment Perugia · Rooms in Perugia’s historic centre',
+      default: it ? 'Apartment Perugia · Appartamento nel centro storico di Perugia' : 'Apartment Perugia · Apartment in Perugia’s historic centre',
       template: '%s · Apartment Perugia',
     },
     description: it
-      ? 'Due camere curate nel centro storico di Perugia, a pochi passi da Corso Vannucci. Prenota direttamente con noi.'
-      : 'Two thoughtfully designed rooms in Perugia’s historic centre, steps from Corso Vannucci. Book directly with us.',
+      ? 'Appartamento per 4 persone con due camere nel centro storico di Perugia, a pochi passi da Corso Vannucci. Prenota direttamente con noi.'
+      : 'A two-bedroom apartment for 4 guests in Perugia’s historic centre, steps from Corso Vannucci. Book directly with us.',
     icons: { icon: '/icon.svg' },
     openGraph: { type: 'website', siteName: 'Apartment Perugia', locale: it ? 'it_IT' : 'en_GB', images: ['/img/hero-perugia.webp'] },
   };

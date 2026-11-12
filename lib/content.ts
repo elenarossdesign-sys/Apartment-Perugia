@@ -1,112 +1,71 @@
 import type { T } from './i18n';
 
-/* ---------------- Camere ---------------- */
-export type Room = {
-  slug: 'raffaello' | 'bacio';
-  num: string;
-  name: string;
-  price: string; // prezzo "a partire da", in euro
-  sub: T;
-  short: T;
-  feature: { icon: string; label: T };
-  card: string;
-  specs: { icon: string; label: T }[];
-  highlights: { icon: string; title: T; text: T }[];
-  description: T[];
-  amenities: { icon: string; label: T }[];
-  gallery: { src: string; alt: T }[];
-  houseRules: T;
+/* ---------------- Appartamento ---------------- */
+export type Bedroom = { name: string; img: string; text: T; features: T[] };
+
+export const apartment = {
+  name: 'Apartment Perugia',
+  price: '80', // prezzo "a partire da" per notte, in euro
+  guests: 4,
+  sub: { it: 'Un appartamento per 4 persone con due camere, nel cuore del centro storico.', en: 'An apartment for 4 guests with two bedrooms, in the heart of the historic centre.' } as T,
+  short: { it: 'Un unico appartamento con due camere dal carattere diverso: la luminosa Camera Raffaello con vasca idromassaggio e la Camera Bacio nel blu della notte perugina. Fino a 4 ospiti, a pochi passi da Corso Vannucci.', en: 'One apartment with two bedrooms of different character: the bright Camera Raffaello with a whirlpool tub and Camera Bacio in the deep blue of Perugia’s night. Up to 4 guests, steps from Corso Vannucci.' } as T,
+  card: '/img/raffaello-card.webp',
+  specs: [
+    { icon: 'guests', label: { it: '4 ospiti', en: '4 guests' } },
+    { icon: 'home', label: { it: '2 camere da letto', en: '2 bedrooms' } },
+    { icon: 'bed', label: { it: '2 letti matrimoniali', en: '2 double beds' } },
+    { icon: 'size', label: { it: '90 m²', en: '90 m²' } },
+  ],
+  highlights: [
+    { icon: 'home', title: { it: 'Un appartamento, due camere', en: 'One apartment, two bedrooms' }, text: { it: 'Spazi riservati per chi viaggia in coppia, con amici o in famiglia.', en: 'Private space for couples, friends or families.' } },
+    { icon: 'bath', title: { it: 'Vasca idromassaggio', en: 'Whirlpool tub' }, text: { it: 'Nella Camera Raffaello, per chiudere la giornata con un bagno caldo.', en: 'In Camera Raffaello, to end your day with a hot bath.' } },
+    { icon: 'pin', title: { it: 'Nel cuore del centro storico', en: 'In the heart of the old town' }, text: { it: 'Corso Vannucci a 8 minuti a piedi.', en: 'Corso Vannucci is an 8-minute walk.' } },
+  ],
+  description: [
+    { it: 'Apartment Perugia è un unico appartamento di 90 m² nel centro storico, pensato per ospitare fino a 4 persone. È composto da due camere da letto con letto matrimoniale, ognuna con il suo carattere, e da spazi comuni con cucina privata.', en: 'Apartment Perugia is a single 90 m² apartment in the historic centre, designed for up to 4 guests. It has two bedrooms, each with a double bed and its own character, plus living space with a private kitchen.' },
+    { it: 'Prenoti l’intero appartamento: nessuno spazio in condivisione con altri ospiti. Il posto giusto per rallentare dopo una giornata tra piazze, musei e ristoranti.', en: 'You book the entire apartment: no space shared with other guests. The right place to slow down after a day of squares, museums and restaurants.' },
+  ] as T[],
+  bedrooms: [
+    {
+      name: 'Camera Raffaello',
+      img: '/img/raffaello-1.webp',
+      text: { it: 'Luminosa, con toni chiari e linee pulite. Il suo cuore è la vasca idromassaggio, pensata per una pausa a due.', en: 'Bright, with light tones and clean lines. Its heart is the whirlpool tub, made for a break for two.' },
+      features: [{ it: 'Letto matrimoniale', en: 'Double bed' }, { it: 'Vasca idromassaggio', en: 'Whirlpool tub' }, { it: 'Vista città', en: 'City view' }],
+    },
+    {
+      name: 'Camera Bacio',
+      img: '/img/bacio-card.webp',
+      text: { it: 'Ispirata ai Baci Perugina: toni blu profondi, romanticismo e il fascino senza tempo di Perugia.', en: 'Inspired by Baci Perugina: deep blue tones, romance and Perugia’s timeless charm.' },
+      features: [{ it: 'Letto matrimoniale', en: 'Double bed' }, { it: 'Toni blu notte', en: 'Midnight-blue tones' }, { it: 'Aria condizionata', en: 'Air conditioning' }],
+    },
+  ] as Bedroom[],
+  amenities: [
+    { icon: 'home', label: { it: 'Intero appartamento', en: 'Entire apartment' } },
+    { icon: 'size', label: { it: '90 m²', en: '90 m²' } },
+    { icon: 'guests', label: { it: 'Fino a 4 ospiti', en: 'Up to 4 guests' } },
+    { icon: 'bed', label: { it: '2 camere con letto matrimoniale', en: '2 bedrooms with double bed' } },
+    { icon: 'bath', label: { it: 'Vasca con idromassaggio', en: 'Whirlpool bathtub' } },
+    { icon: 'kitchen', label: { it: 'Cucina privata', en: 'Private kitchen' } },
+    { icon: 'shower', label: { it: 'Bagno privato', en: 'Private bathroom' } },
+    { icon: 'snow', label: { it: 'Aria condizionata', en: 'Air conditioning' } },
+    { icon: 'city', label: { it: 'Vista città', en: 'City view' } },
+    { icon: 'landmark', label: { it: 'Vista su luoghi di interesse', en: 'Landmark view' } },
+    { icon: 'tv', label: { it: 'TV a schermo piatto', en: 'Flat-screen TV' } },
+    { icon: 'quiet', label: { it: 'Insonorizzazione', en: 'Soundproofing' } },
+    { icon: 'coffee', label: { it: 'Macchina da caffè', en: 'Coffee machine' } },
+    { icon: 'wifi', label: { it: 'Wi-Fi gratuito', en: 'Free Wi-Fi' } },
+    { icon: 'towel', label: { it: 'Biancheria e asciugamani', en: 'Bed linen and towels' } },
+  ],
+  gallery: [
+    { src: '/img/raffaello-1.webp', alt: { it: 'Camera Raffaello, vista d’insieme', en: 'Camera Raffaello, overview' } },
+    { src: '/img/bacio-card.webp', alt: { it: 'Camera Bacio nei toni del blu', en: 'Camera Bacio in shades of blue' } },
+    { src: '/img/raffaello-3.webp', alt: { it: 'La vasca idromassaggio della Camera Raffaello', en: 'The whirlpool tub in Camera Raffaello' } },
+    { src: '/img/raffaello-2.webp', alt: { it: 'Dettaglio della Camera Raffaello', en: 'Camera Raffaello detail' } },
+    { src: '/img/raffaello-4.webp', alt: { it: 'Il bagno', en: 'The bathroom' } },
+    { src: '/img/raffaello-5.webp', alt: { it: 'Dettaglio d’arredo', en: 'Interior detail' } },
+  ] as { src: string; alt: T }[],
+  houseRules: { it: 'Non è consentito fumare. Silenzio tra le 00:00 e le 8:00. Gli animali sono ammessi, potrebbe essere richiesto un supplemento.', en: 'No smoking. Quiet hours from midnight to 8am. Pets are welcome; a surcharge may apply.' } as T,
 };
-
-const near = { icon: 'pin', title: { it: 'Nel cuore del centro storico', en: 'In the heart of the old town' }, text: { it: 'Corso Vannucci a 8 minuti a piedi.', en: 'Corso Vannucci is an 8-minute walk.' } };
-const reach = { icon: 'chat', title: { it: 'Sempre raggiungibili', en: 'Always reachable' }, text: { it: 'Assistenza via WhatsApp prima e durante il soggiorno.', en: 'WhatsApp support before and during your stay.' } };
-
-export const rooms: Room[] = [
-  {
-    slug: 'raffaello',
-    num: '01',
-    name: 'Camera Raffaello',
-    price: '80',
-    sub: { it: 'Una camera luminosa con vasca idromassaggio, tra i vicoli medievali.', en: 'A bright room with a whirlpool tub, among the medieval lanes.' },
-    short: { it: 'Un rifugio luminoso tra i vicoli medievali, con toni chiari, linee pulite e una vasca idromassaggio per chiudere la giornata in città.', en: 'A bright retreat among the medieval lanes, with light tones, clean lines and a whirlpool tub to end your day in town.' },
-    feature: { icon: 'bath', label: { it: 'Vasca idromassaggio', en: 'Whirlpool tub' } },
-    card: '/img/raffaello-card.webp',
-    specs: [
-      { icon: 'guests', label: { it: '2 ospiti', en: '2 guests' } },
-      { icon: 'bed', label: { it: 'Letto matrimoniale', en: 'Double bed' } },
-      { icon: 'size', label: { it: '90 m²', en: '90 m²' } },
-      { icon: 'sun', label: { it: 'Vista sulla città', en: 'City view' } },
-    ],
-    highlights: [
-      { icon: 'bath', title: { it: 'Vasca idromassaggio in camera', en: 'Whirlpool tub in the room' }, text: { it: 'Per chiudere la giornata in città con un bagno caldo.', en: 'End your day in town with a hot bath.' } },
-      near,
-      reach,
-    ],
-    description: [
-      { it: 'Un rifugio luminoso tra i vicoli medievali di Perugia, con toni chiari, linee pulite e dettagli curati. Il posto giusto per rallentare dopo una giornata tra piazze, musei e ristoranti.', en: 'A bright retreat among Perugia’s medieval lanes, with light tones, clean lines and thoughtful details. The right place to slow down after a day of squares, museums and restaurants.' },
-      { it: 'La vasca idromassaggio è il cuore della camera: pensata per una pausa a due, a pochi passi da tutto quello che c’è da vedere.', en: 'The whirlpool tub is the heart of the room: made for a break for two, a few steps from everything worth seeing.' },
-    ],
-    amenities: [
-      { icon: 'home', label: { it: 'Intero appartamento', en: 'Entire apartment' } },
-      { icon: 'size', label: { it: '90 m²', en: '90 m²' } },
-      { icon: 'bath', label: { it: 'Vasca con idromassaggio', en: 'Whirlpool bathtub' } },
-      { icon: 'kitchen', label: { it: 'Cucina privata', en: 'Private kitchen' } },
-      { icon: 'shower', label: { it: 'Bagno in camera', en: 'Ensuite bathroom' } },
-      { icon: 'snow', label: { it: 'Aria condizionata', en: 'Air conditioning' } },
-      { icon: 'city', label: { it: 'Vista città', en: 'City view' } },
-      { icon: 'landmark', label: { it: 'Vista su luoghi di interesse', en: 'Landmark view' } },
-      { icon: 'tv', label: { it: 'TV a schermo piatto', en: 'Flat-screen TV' } },
-      { icon: 'quiet', label: { it: 'Insonorizzazione', en: 'Soundproofing' } },
-      { icon: 'coffee', label: { it: 'Macchina da caffè', en: 'Coffee machine' } },
-      { icon: 'wifi', label: { it: 'Wi-Fi gratuito', en: 'Free Wi-Fi' } },
-      { icon: 'bed', label: { it: 'Letto matrimoniale', en: 'Double bed' } },
-      { icon: 'towel', label: { it: 'Biancheria e asciugamani', en: 'Bed linen and towels' } },
-    ],
-    gallery: [
-      { src: '/img/raffaello-1.webp', alt: { it: 'Camera Raffaello, vista d’insieme', en: 'Camera Raffaello, overview' } },
-      { src: '/img/raffaello-2.webp', alt: { it: 'Dettaglio della camera', en: 'Room detail' } },
-      { src: '/img/raffaello-3.webp', alt: { it: 'La vasca idromassaggio', en: 'The whirlpool tub' } },
-      { src: '/img/raffaello-4.webp', alt: { it: 'Il bagno', en: 'The bathroom' } },
-      { src: '/img/raffaello-5.webp', alt: { it: 'Dettaglio d’arredo', en: 'Interior detail' } },
-    ],
-    houseRules: { it: 'Non è consentito fumare. Silenzio tra le 00:00 e le 8:00. Gli animali sono ammessi, potrebbe essere richiesto un supplemento.', en: 'No smoking. Quiet hours from midnight to 8am. Pets are welcome; a surcharge may apply.' },
-  },
-  {
-    slug: 'bacio',
-    num: '02',
-    name: 'Camera Bacio',
-    price: '60',
-    sub: { it: 'Il blu della notte perugina, ispirato ai Baci Perugina.', en: 'The blue of Perugia’s night, inspired by Baci Perugina.' },
-    short: { it: 'Ispirata ai Baci Perugina: toni profondi, romanticismo e il fascino senza tempo di Perugia, a due passi da tutto.', en: 'Inspired by Baci Perugina: deep tones, romance and Perugia’s timeless charm, close to everything.' },
-    feature: { icon: 'moon', label: { it: 'Il blu della notte', en: 'Midnight blue' } },
-    card: '/img/bacio-card.webp',
-    specs: [
-      { icon: 'guests', label: { it: '2 ospiti', en: '2 guests' } },
-      { icon: 'bed', label: { it: 'Letto matrimoniale', en: 'Double bed' } },
-      { icon: 'size', label: { it: '[mq] m²', en: '[sqm] m²' } },
-      { icon: 'moon', label: { it: 'Toni blu notte', en: 'Midnight-blue tones' } },
-    ],
-    highlights: [
-      { icon: 'moon', title: { it: 'Un’atmosfera unica', en: 'A one-of-a-kind mood' }, text: { it: 'Toni profondi e romantici, ispirati all’icona dolce di Perugia.', en: 'Deep, romantic tones inspired by Perugia’s sweetest icon.' } },
-      near,
-      reach,
-    ],
-    description: [
-      { it: 'Una camera ispirata ai Baci Perugina, che celebra il romanticismo, la dolcezza e il fascino senza tempo di Perugia.', en: 'A room inspired by Baci Perugina, celebrating the romance, sweetness and timeless charm of Perugia.' },
-    ],
-    amenities: [
-      { icon: 'bed', label: { it: 'Letto matrimoniale', en: 'Double bed' } },
-      { icon: 'shower', label: { it: 'Bagno privato', en: 'Private bathroom' } },
-      { icon: 'snow', label: { it: 'Aria condizionata', en: 'Air conditioning' } },
-      { icon: 'wifi', label: { it: 'Wi-Fi gratuito', en: 'Free Wi-Fi' } },
-      { icon: 'towel', label: { it: 'Biancheria e asciugamani', en: 'Bed linen and towels' } },
-    ],
-    gallery: [{ src: '/img/bacio-card.webp', alt: { it: 'Camera Bacio nei toni del blu', en: 'Camera Bacio in shades of blue' } }],
-    houseRules: { it: '[Fumo, animali, feste, orari di silenzio.]', en: '[Smoking, pets, parties, quiet hours.]' },
-  },
-];
-
-export const getRoom = (slug: string) => rooms.find((r) => r.slug === slug);
 
 /* ---------------- Recensioni e posizione ---------------- */
 export const reviews = [
@@ -194,7 +153,7 @@ export const posts: Post[] = [
       { type: 'p', text: { it: 'Durante il festival il centro è vivace fino a tardi. Muoversi a piedi è il modo migliore per godersi tutto: niente traffico, niente parcheggio da cercare, solo musica da seguire.', en: 'During the festival the centre stays lively until late. Walking is the best way to enjoy it all: no traffic, no parking to look for, just music to follow.' } },
       { type: 'tip', text: { it: '[Scrivi qui un consiglio personale: il tuo concerto preferito, un locale, l’orario migliore per evitare la folla.]', en: '[Add a personal tip here: your favourite concert, a bar, the best time to avoid the crowds.]' } },
       { type: 'h2', id: 'dormire', text: { it: 'Dove dormire', en: 'Where to stay' } },
-      { type: 'p', text: { it: 'Dormire in centro significa tornare a piedi dopo l’ultimo concerto. Le nostre camere sono a pochi minuti da Corso Vannucci: lasci la macchina e ti godi il festival senza pensieri.', en: 'Staying in the centre means walking home after the last concert. Our rooms are a few minutes from Corso Vannucci: leave the car and enjoy the festival without a care.' } },
+      { type: 'p', text: { it: 'Dormire in centro significa tornare a piedi dopo l’ultimo concerto. Il nostro appartamento è a pochi minuti da Corso Vannucci: lasci la macchina e ti godi il festival senza pensieri.', en: 'Staying in the centre means walking home after the last concert. Our apartment is a few minutes from Corso Vannucci: leave the car and enjoy the festival without a care.' } },
       { type: 'cta' },
     ],
   },

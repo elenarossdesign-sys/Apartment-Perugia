@@ -25,7 +25,7 @@ const T = {
     eName: 'Inserisci nome e cognome.', eEmail: 'Inserisci la tua email.', eEmailBad: 'Controlla l’indirizzo email.', eDates: 'La partenza deve essere dopo l’arrivo.', eMsg: 'Scrivi il tuo messaggio.',
     fail: 'Non siamo riusciti a inviare il messaggio. Riprova tra poco oppure scrivici a', notReady: 'Il modulo non è ancora collegato al servizio email (manca la chiave nelle impostazioni). Nel frattempo scrivici a',
     okTitle: 'Messaggio inviato, grazie', okText1: 'Ti rispondiamo entro', okText2: 'all’indirizzo', home: 'Torna alla home', wa: 'Scrivici su WhatsApp',
-    subject: 'Nuova richiesta dal sito', guests: 'Ospiti',
+    subject: 'Nuova richiesta dal sito', guests: 'Ospiti', guestsPh: 'Es. 2 adulti, 1 bambino',
   },
   en: {
     name: 'Full name', email: 'Email', phone: 'Phone', room: 'Room', arrive: 'Check-in', depart: 'Check-out', msg: 'Message',
@@ -35,7 +35,7 @@ const T = {
     eName: 'Please enter your name.', eEmail: 'Please enter your email.', eEmailBad: 'Please check your email address.', eDates: 'Check-out must be after check-in.', eMsg: 'Please write your message.',
     fail: 'We couldn’t send your message. Please try again shortly or email us at', notReady: 'The form is not connected to the email service yet. In the meantime, email us at',
     okTitle: 'Message sent, thank you', okText1: 'We’ll reply within', okText2: 'at', home: 'Back to home', wa: 'Message us on WhatsApp',
-    subject: 'New request from the website', guests: 'Guests',
+    subject: 'New request from the website', guests: 'Guests', guestsPh: 'E.g. 2 adults, 1 child',
   },
 };
 
@@ -46,13 +46,12 @@ export default function ContactForm({ locale }: { locale: Locale }) {
   const sp = useSearchParams();
   const [f, setF] = useState({
     name: '', email: '', phone: '',
-    room: sp.get('camera') || '',
     arrive: sp.get('arrivo') || '',
     depart: sp.get('partenza') || '',
+    guests: sp.get('ospiti') || '',
     msg: '',
     hp: '',
   });
-  const guests = sp.get('ospiti') || '';
   const [err, setErr] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<'idle' | 'sending' | 'done' | 'fail' | 'notready'>('idle');
   const today = useMemo(() => iso(new Date()), []);
@@ -83,10 +82,9 @@ export default function ContactForm({ locale }: { locale: Locale }) {
       [locale === 'it' ? 'Nome' : 'Name']: f.name.trim(),
       Email: f.email.trim(),
       [locale === 'it' ? 'Telefono' : 'Phone']: f.phone.trim() || '—',
-      [locale === 'it' ? 'Camera' : 'Room']: f.room || t.any,
       [locale === 'it' ? 'Arrivo' : 'Check-in']: f.arrive || '—',
       [locale === 'it' ? 'Partenza' : 'Check-out']: f.depart || '—',
-      ...(guests ? { [t.guests]: guests } : {}),
+      [t.guests]: f.guests.trim() || '—',
       [locale === 'it' ? 'Messaggio' : 'Message']: f.msg.trim(),
       Lingua: locale.toUpperCase(),
     };
@@ -144,9 +142,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
       </div>
       <div className="g2">
         <div className="fld"><label htmlFor="f-phone">{t.phone} <span className="opt2">{t.optional}</span></label><input id="f-phone" className="control" type="tel" autoComplete="tel" placeholder="+39" value={f.phone} onChange={set('phone')} /></div>
-        <div className="fld"><label htmlFor="f-room">{t.room} <span className="opt2">{t.optional}</span></label>
-          <span className="selw"><select id="f-room" className="control" value={f.room} onChange={set('room')}><option value="">{t.any}</option><option value="Camera Raffaello">Camera Raffaello</option><option value="Camera Bacio">Camera Bacio</option></select><Icon name="chev" /></span>
-        </div>
+        <div className="fld"><label htmlFor="f-guests">{t.guests} <span className="opt2">{t.optional}</span></label><input id="f-guests" className="control" type="text" placeholder={t.guestsPh} value={f.guests} onChange={set('guests')} /></div>
       </div>
       <div className="g2">
         <div className="fld"><label htmlFor="f-arrive">{t.arrive} <span className="opt2">{t.optional}</span></label><input id="f-arrive" className="control" type="date" min={today} value={f.arrive} onChange={set('arrive')} /></div>

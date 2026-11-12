@@ -8,8 +8,8 @@ import { getUI, path, type Locale } from '@/lib/i18n';
 import { posts } from '@/lib/content';
 
 const C = {
-  it: { title: 'Vivere Perugia', lead: 'Eventi, gite nei dintorni, sapori e consigli di chi la città la vive ogni giorno. Per organizzare il tuo soggiorno prima ancora di partire.', featured: 'IN EVIDENZA', ctaH: 'Vuoi vivere Perugia da dentro?', ctaP: 'Due camere nel centro storico, a pochi passi da tutto quello che racconta questo blog.', cta: 'Scrivici per le date' },
-  en: { title: 'Living Perugia', lead: 'Events, day trips, food and tips from people who live the city every day. Plan your stay before you even leave.', featured: 'FEATURED', ctaH: 'Want to experience Perugia from the inside?', ctaP: 'Two rooms in the historic centre, steps from everything this blog talks about.', cta: 'Ask us about dates' },
+  it: { title: 'Vivere Perugia', lead: 'Eventi, gite nei dintorni, sapori e consigli di chi la città la vive ogni giorno. Per organizzare il tuo soggiorno prima ancora di partire.', featured: 'IN EVIDENZA', ctaH: 'Vuoi vivere Perugia da dentro?', ctaP: 'Un appartamento per 4 nel centro storico, a pochi passi da tutto quello che racconta questo blog.', cta: 'Scrivici per le date' },
+  en: { title: 'Living Perugia', lead: 'Events, day trips, food and tips from people who live the city every day. Plan your stay before you even leave.', featured: 'FEATURED', ctaH: 'Want to experience Perugia from the inside?', ctaP: 'An apartment for 4 in the historic centre, steps from everything this blog talks about.', cta: 'Ask us about dates' },
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
