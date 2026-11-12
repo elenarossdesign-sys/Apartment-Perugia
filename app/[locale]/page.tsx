@@ -78,11 +78,12 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
   return (
     <div className="ap" id="top">
       <a className="skip" href="#camere">{locale === 'it' ? 'Vai al contenuto' : 'Skip to content'}</a>
+      <Nav locale={locale} variant="glass" active="home" />
       <div className="hero-frame">
         <section className="hero" aria-label={c.pill}>
           <img src="/img/hero-perugia.webp" alt={locale === 'it' ? 'I tetti del centro storico di Perugia al tramonto' : 'The rooftops of Perugia’s old town at sunset'} fetchPriority="high" />
           <div className="shade" />
-          <Nav locale={locale} variant="glass" active="home" />
+          <div className="nav-space" aria-hidden="true" />
           <div className="hero-body">
             <div className="hero-copy">
               <span className="pill"><span className="d" />{c.pill}</span>

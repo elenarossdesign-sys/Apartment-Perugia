@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import Icon from './Icon';
 
 type Img = { src: string; alt: string };
@@ -41,7 +42,7 @@ export default function Gallery({ images, locale }: { images: Img[]; locale: 'it
         )}
         <button type="button" className="btn all" onClick={() => setI(0)}><Icon name="grid" />{L.all}</button>
       </section>
-      {i !== null && (
+      {i !== null && createPortal(
         <div className="lb" role="dialog" aria-modal="true" aria-label={L.all}>
           <div className="lb-top"><span>{i + 1} / {n}</span><button className="lb-x" type="button" aria-label={L.close} onClick={() => setI(null)}><Icon name="x" /></button></div>
           <div className="lb-stage">
@@ -57,7 +58,8 @@ export default function Gallery({ images, locale }: { images: Img[]; locale: 'it
               ))}
             </div>
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
     </>
   );
